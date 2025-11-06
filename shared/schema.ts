@@ -71,6 +71,9 @@ export const insertDebtSchema = createInsertSchema(debts).omit({
   tolanganSumma: true,
   holati: true,
   arxivlangan: true,
+}).extend({
+  berilganSana: z.string().or(z.date()),
+  qaytarishMuddati: z.string().or(z.date()),
 });
 
 export const insertPaymentSchema = createInsertSchema(payments).omit({

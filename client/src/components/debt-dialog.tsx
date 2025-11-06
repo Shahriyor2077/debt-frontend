@@ -176,38 +176,68 @@ export function DebtDialog({ debt, open, onOpenChange }: DebtDialogProps) {
             <FormField
               control={form.control}
               name="berilganSana"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Berilgan sana</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="date"
-                      value={field.value ? format(new Date(field.value), "yyyy-MM-dd") : ""}
-                      onChange={(e) => field.onChange(new Date(e.target.value).toISOString())}
-                      data-testid="input-debt-date"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={({ field }) => {
+                const dateValue = field.value ? (() => {
+                  try {
+                    const date = new Date(field.value);
+                    return isNaN(date.getTime()) ? "" : format(date, "yyyy-MM-dd");
+                  } catch {
+                    return "";
+                  }
+                })() : "";
+                
+                return (
+                  <FormItem>
+                    <FormLabel>Berilgan sana</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="date"
+                        value={dateValue}
+                        onChange={(e) => {
+                          if (e.target.value) {
+                            field.onChange(new Date(e.target.value).toISOString());
+                          }
+                        }}
+                        data-testid="input-debt-date"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
             <FormField
               control={form.control}
               name="qaytarishMuddati"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Qaytarish muddati</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="date"
-                      value={field.value ? format(new Date(field.value), "yyyy-MM-dd") : ""}
-                      onChange={(e) => field.onChange(new Date(e.target.value).toISOString())}
-                      data-testid="input-debt-deadline"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={({ field }) => {
+                const dateValue = field.value ? (() => {
+                  try {
+                    const date = new Date(field.value);
+                    return isNaN(date.getTime()) ? "" : format(date, "yyyy-MM-dd");
+                  } catch {
+                    return "";
+                  }
+                })() : "";
+                
+                return (
+                  <FormItem>
+                    <FormLabel>Qaytarish muddati</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="date"
+                        value={dateValue}
+                        onChange={(e) => {
+                          if (e.target.value) {
+                            field.onChange(new Date(e.target.value).toISOString());
+                          }
+                        }}
+                        data-testid="input-debt-deadline"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
             <DialogFooter>
               <Button
