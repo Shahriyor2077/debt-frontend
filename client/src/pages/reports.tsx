@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, TrendingDown, DollarSign, Users, FileText, AlertCircle, CheckCircle2, Clock } from "lucide-react";
+import { TrendingUp, TrendingDown, DollarSign, Users, FileText, AlertCircle } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
@@ -11,8 +11,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import type { DebtWithCustomer } from "@shared/schema";
-import { format, isPast } from "date-fns";
+import type { DebtWithCustomer } from "@/types";
+import { format } from "date-fns";
 
 interface ReportStats {
   jamiMijozlar: number;
@@ -32,12 +32,12 @@ export default function Reports() {
     queryKey: ["/api/stats"],
   });
 
-  const { data: overdueDebts, isLoading: debtsLoading } = useQuery<DebtWithCustomer[]>({
+  const { data: overdueDebts } = useQuery<DebtWithCustomer[]>({
     queryKey: ["/api/debts/overdue"],
   });
 
-  const formatSumma = (summa: number) => {
-    return new Intl.NumberFormat('uz-UZ').format(summa) + " so'm";
+  const formatSumma = (summa: number | string) => {
+    return new Intl.NumberFormat('uz-UZ').format(Number(summa)) + " so'm";
   };
 
   const getPaymentPercentage = () => {

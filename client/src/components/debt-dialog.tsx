@@ -28,7 +28,8 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import { insertDebtSchema, type DebtWithCustomer, type InsertDebt, type Customer } from "@shared/schema";
+import { insertDebtSchema } from "@/lib/validators";
+import type { DebtWithCustomer, InsertDebt, Customer } from "@/types";
 import { format } from "date-fns";
 
 interface DebtDialogProps {
@@ -185,7 +186,7 @@ export function DebtDialog({ debt, open, onOpenChange }: DebtDialogProps) {
                     return "";
                   }
                 })() : "";
-                
+
                 return (
                   <FormItem>
                     <FormLabel>Berilgan sana</FormLabel>
@@ -218,7 +219,7 @@ export function DebtDialog({ debt, open, onOpenChange }: DebtDialogProps) {
                     return "";
                   }
                 })() : "";
-                
+
                 return (
                   <FormItem>
                     <FormLabel>Qaytarish muddati</FormLabel>

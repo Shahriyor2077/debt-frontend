@@ -23,7 +23,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import { insertPaymentSchema, type DebtWithCustomer, type InsertPayment } from "@shared/schema";
+import { insertPaymentSchema } from "@/lib/validators";
+import type { DebtWithCustomer, InsertPayment } from "@/types";
 
 interface PaymentDialogProps {
   debt: DebtWithCustomer | null;
@@ -151,6 +152,7 @@ export function PaymentDialog({ debt, open, onOpenChange }: PaymentDialogProps) 
                       className="resize-none"
                       rows={3}
                       {...field}
+                      value={field.value || ""}
                       data-testid="input-payment-note"
                     />
                   </FormControl>

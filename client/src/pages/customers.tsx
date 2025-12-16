@@ -18,7 +18,7 @@ import { CustomerDialog } from "@/components/customer-dialog";
 import { DeleteConfirmDialog } from "@/components/delete-confirm-dialog";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import type { Customer } from "@shared/schema";
+import type { Customer } from "@/types";
 import { format } from "date-fns";
 
 export default function Customers() {

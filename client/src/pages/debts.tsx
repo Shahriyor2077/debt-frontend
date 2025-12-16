@@ -26,7 +26,7 @@ import { PaymentDialog } from "@/components/payment-dialog";
 import { DeleteConfirmDialog } from "@/components/delete-confirm-dialog";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import type { DebtWithCustomer } from "@shared/schema";
+import type { DebtWithCustomer } from "@/types";
 import { format, isPast } from "date-fns";
 
 export default function Debts() {

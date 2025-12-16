@@ -22,7 +22,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import { insertCustomerSchema, type Customer, type InsertCustomer } from "@shared/schema";
+import { insertCustomerSchema } from "@/lib/validators";
+import type { Customer, InsertCustomer } from "@/types";
 
 interface CustomerDialogProps {
   customer: Customer | null;
@@ -133,7 +134,7 @@ export function CustomerDialog({ customer, open, onOpenChange }: CustomerDialogP
                 <FormItem>
                   <FormLabel>Manzil (ixtiyoriy)</FormLabel>
                   <FormControl>
-                    <Input placeholder="Manzil" {...field} data-testid="input-customer-address" />
+                    <Input placeholder="Manzil" {...field} value={field.value || ""} data-testid="input-customer-address" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -151,6 +152,7 @@ export function CustomerDialog({ customer, open, onOpenChange }: CustomerDialogP
                       className="resize-none"
                       rows={3}
                       {...field}
+                      value={field.value || ""}
                       data-testid="input-customer-note"
                     />
                   </FormControl>
