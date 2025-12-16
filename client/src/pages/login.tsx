@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { FileText } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { getApiUrl } from "@/lib/api";
 
 export default function Login() {
   const [, setLocation] = useLocation();
@@ -19,7 +20,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(getApiUrl("/api/auth/login"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ telefon }),
