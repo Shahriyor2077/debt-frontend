@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { insertCustomerSchema } from "@/lib/validators";
@@ -42,6 +43,7 @@ export function CustomerDialog({ customer, open, onOpenChange }: CustomerDialogP
       telefon: "",
       manzil: "",
       izoh: "",
+      faol: true,
     },
   });
 
@@ -52,6 +54,7 @@ export function CustomerDialog({ customer, open, onOpenChange }: CustomerDialogP
         telefon: customer.telefon,
         manzil: customer.manzil || "",
         izoh: customer.izoh || "",
+        faol: customer.faol,
       });
     } else {
       form.reset({
@@ -59,6 +62,7 @@ export function CustomerDialog({ customer, open, onOpenChange }: CustomerDialogP
         telefon: "",
         manzil: "",
         izoh: "",
+        faol: true,
       });
     }
   }, [customer, form]);
@@ -160,6 +164,29 @@ export function CustomerDialog({ customer, open, onOpenChange }: CustomerDialogP
                 </FormItem>
               )}
             />
+            {isEdit && (
+              <FormField
+                control={form.control}
+                name="faol"
+                render={({ field }) => (
+                  <FormItem className="flex items-center justify-between rounded-lg border p-3">
+                    <div className="space-y-0.5">
+                      <FormLabel>Faol holat</FormLabel>
+                      <p className="text-sm text-muted-foreground">
+                        Mijoz faol bo'lsa, qarz qo'shishda ko'rinadi
+                      </p>
+                    </div>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        data-testid="switch-customer-active"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
             <DialogFooter>
               <Button
                 type="button"

@@ -5,6 +5,7 @@ export const insertCustomerSchema = z.object({
     telefon: z.string().min(1, "Telefon raqami kiritilishi shart"),
     manzil: z.string().optional().nullable(),
     izoh: z.string().optional().nullable(),
+    faol: z.boolean().optional(),
 });
 
 export const insertDebtSchema = z.object({
